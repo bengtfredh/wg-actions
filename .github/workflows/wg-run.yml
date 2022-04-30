@@ -7,7 +7,20 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
-      - name: Install wireguard
-        run: |
-          sudo apt-get update
-          sudo apt-get install wireguard
+      - name: Set up WireGuard
+        uses: egor-tensin/setup-wireguard@v1
+        with:
+          # Endpoint in the HOST:PORT format
+          endpoint: 
+          # Public key of the endpoint
+          endpoint_public_key: 
+          # Comma-separated list of IP addresses
+          ips: 
+          # Comma-separated list of netmasks
+          allowed_ips: 
+          # Private key
+          private_key: 
+          # Preshared key
+          preshared_key: # optional
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
