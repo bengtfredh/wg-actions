@@ -22,6 +22,8 @@ jobs:
           private_key: '${{ secrets.WG_PRIVATEKEY }}'
           # Preshared key
           #preshared_key: # optional
+      - name: Show wg status
+        run: wg
       - name: Check endpoint
         run: ping -W 10 -c 5 -- '${{ secrets.WG_ENDPOINT_PRIVATE_IP }}'
       - name: Setup Terraform
