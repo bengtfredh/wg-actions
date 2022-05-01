@@ -28,3 +28,4 @@ jobs:
         run: sudo ping -W 10 -c 5 -- '${{ secrets.WG_ENDPOINT_PRIVATE_IP }}'
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
+        
