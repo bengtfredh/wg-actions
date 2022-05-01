@@ -22,13 +22,12 @@ jobs:
           private_key: '${{ secrets.WG_PRIVATEKEY }}'
           # Preshared key
           #preshared_key: # optional
-        run: sudo resolvectl dns "$ifname" '${{ secrets.DNS_SERVER }}'; sudo resolvectl dns "$ifname" '${{ secrets.DNS_DOMAIN }}'
       - name: Show wg status
         run: sudo wg;sudo ip r s
       - name: Check endpoint
         run: sudo ping -W 10 -c 5 -- '${{ secrets.WG_ENDPOINT_PRIVATE_IP }}'
-      #- name: Add private dns
-      #  run: sudo resolvectl dns "$ifname" '${{ secrets.DNS_SERVER }}'; sudo resolvectl dns "$ifname" '${{ secrets.DNS_DOMAIN }}'
+      - name: Add private dns
+        run: sudo resolvectl dns "$(sudo wg show interfaces)" '${{ secrets.DNS_SERVER }}'; sudo resolvectl dns "$(sudo wg show interfaces)" '${{ secrets.DNS_DOMAIN }}'
       - name: Check endpoint dns
         run: sudo ping -W 10 -c 5 -- '${{ secrets.WG_ENDPOINT_PRIVATE_DNS }}'
       - name: Setup Terraform
