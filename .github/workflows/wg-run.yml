@@ -8,7 +8,7 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v3
       - name: Set up WireGuard
-        uses: bengtfredh/setup-wireguard@v4
+        uses: bengtfredh/setup-wireguard@v5
         with:
           # Endpoint in the HOST:PORT format
           endpoint: '${{ secrets.WG_ENDPOINT }}'
